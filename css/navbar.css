@@ -1,0 +1,38 @@
+.nav{
+    display: flex;
+    width: 100vw;
+    height: 5em;
+
+    background-color: #626F47;
+    margin: 0px;
+}
+
+.nav-left{
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.nav-right{
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.nav h2{
+    font-family: "Montserrat";
+    font-size: 1.3rem;
+
+    margin: 1em;
+    
+    width: fit-content;
+
+    color: white;
+    cursor: pointer;
+}
+
+.nav h2:hover{
+    color: #A4B465;
+}
