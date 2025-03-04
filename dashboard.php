@@ -8,11 +8,18 @@
     <link rel="stylesheet" href="css\style.css">
     <link rel="stylesheet" href="css\navbar.css">
     <link rel="stylesheet" href="css\font.css">
+    <link rel="stylesheet" href="css\hero.css">
 
     <script>
         function logoutpageFunction(){
             window.location.href="login.php";
         }
+        function applicationpageFunction(){
+            window.location.href="application.php";
+        }
+        function homepageFunction(){
+            window.location.href="dashboard.php";
+        }  
     </script>
 </head>
 
@@ -21,8 +28,8 @@
         <div class="nav">
             <div class="nav-left">
                 <img class="logo" src="img\logo.png" alt="">
-                <h2>Home</h2>
-                <h2>Application</h2>
+                <h2 onClick="homepageFunction()">Home</h2>
+                <h2 onClick="applicationpageFunction()">Application</h2>
                 <h2>Shift</h2>
                 <h2>Request</h2>
             </div>
@@ -32,20 +39,10 @@
             </div>
         </div>
 
-        <div class="content">
-            <h3>HELLO WORLD</h3>
-        </div>
-        <div class="content">
-            <h3>HELLO WORLD</h3>
-        </div>
-        <div class="content">
-            <h3>HELLO WORLD</h3>
-        </div>
-        <div class="content">
-            <h3>HELLO WORLD</h3>
+        <div class="hero">
+            <h3>EMPOWERING HR: Streamline Applications, Perfect Interviews. Accelerate Onboarding.</h3>
+            <button>Press</button>
         </div>
     </div>
-
-
 </body>
 

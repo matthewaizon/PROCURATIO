@@ -1,0 +1,33 @@
+.hero{
+    width: 90%;
+    height: 75%;
+    background-image: url("../img/hero-img-1.jpg");
+    background-position: center;
+    background-size: cover;
+    padding: 2.5rem;
+
+    align-content: center;
+    border-radius: 15px;
+    margin: 1em;
+}
+
+.hero h3{
+    font-size: 4em;
+    font-family: "Montserrat";
+    color: white;
+    text-align: left;
+    margin: 0;
+}
+
+.application{
+    width: 90%;
+    height: 75%;
+    background-image: url("../img/hero-img-2.webp");
+    background-position: center;
+    background-size: cover;
+    padding: 2.5rem;
+
+    align-content: center;
+    border-radius: 15px;
+    margin: 1em;
+}
