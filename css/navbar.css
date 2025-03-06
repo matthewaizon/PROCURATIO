@@ -1,9 +1,8 @@
 .nav{
     display: flex;
     width: 100vw;
-    height: 5em;
 
-    background-color: #626F47;
+    background-color: #1e1e1e;
     margin: 0px;
 }
 
@@ -23,7 +22,8 @@
 
 .nav h2{
     font-family: "Montserrat";
-    font-size: 1.3rem;
+    font-size: 0.8rem;
+    font-weight: 300;
 
     margin: 1em;
     
@@ -35,4 +35,21 @@
 
 .nav h2:hover{
     color: #A4B465;
+}
+
+.border{
+    border-radius: 5px;
+    border-width: 1px;
+    background: transparent;
+    border-style: solid;
+    border-color: #757575;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.logo{
+    height:35px;
 }

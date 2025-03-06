@@ -32,13 +32,14 @@
         <div class="nav">
             <div class="nav-left">
                 <img class="logo" src="..\img\logo.png" alt="">
-                <h2 onClick="homepageFunction()">Home</h2>
-                <h2 onClick="applicationpageFunction()">Application</h2>
-                <h2 onClick="contactpageFunction()">Contact Us</h2>
+
             </div>
             
             <div class="nav-right">
-                <h2 onClick="loginpageFunction()">Login</h2>
+                <h2 onClick="homepageFunction()">Home</h2>
+                <h2 onClick="applicationpageFunction()">Application</h2>
+                <h2 onClick="contactpageFunction()">Contact Us</h2>
+                <h2 class="border" onClick="loginpageFunction()">Login</h2>
             </div>
         </div>
 
@@ -49,6 +50,7 @@
                 <input type="email" placeholder="Email">
                 <input type="text" placeholder="Phone Number">
                 <button class="post">Upload Resume</button>
+                <button class="post">Submit</button>
             </form>
         </div>
     </div>

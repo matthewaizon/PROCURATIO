@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css\style.css">
     <link rel="stylesheet" href="css\navbar.css">
     <link rel="stylesheet" href="css\font.css">
+    <link rel="stylesheet" href="css\em.css">
 </head>
 
 <script>
@@ -24,7 +25,7 @@
     <div class="container">
         <div class="nav">
                 <img class="logo" src="img\logo.png" alt="">
-                <h2 onClick="em_dashboardpageFunction()">Procuratio</h2>
+                <h2 class="border" onClick="em_dashboardpageFunction()">Procuratio</h2>
         </div>
 
         <div class="content">
