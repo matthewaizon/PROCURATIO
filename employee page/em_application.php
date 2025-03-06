@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="..\css\navbar.css">
     <link rel="stylesheet" href="..\css\font.css">
     <link rel="stylesheet" href="..\css\hero.css">
+    <link rel="stylesheet" href="..\css\em.css">
 
     <script>
         function loginpageFunction(){
-            window.location.href="..\login.php";
+            window.location.href="../login.php";
         }
         function applicationpageFunction(){
             window.location.href="em_application.php";
@@ -41,13 +42,13 @@
             </div>
         </div>
 
-        <div class="hero">
+        <div class="content">
             <form action="">
                 <input type="text" placeholder="First Name">
                 <input type="text" placeholder="Last Name">
                 <input type="email" placeholder="Email">
                 <input type="text" placeholder="Phone Number">
-                <button>Upload Resume</button>
+                <button class="post">Upload Resume</button>
             </form>
         </div>
     </div>
