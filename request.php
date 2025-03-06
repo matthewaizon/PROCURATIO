@@ -34,14 +34,14 @@
         <div class="nav">
             <div class="nav-left">
                 <img class="logo" src="img\logo.png" alt="">
+            </div>
+            
+            <div class="nav-right">
                 <h2 onClick="homepageFunction()">Home</h2>
                 <h2 onClick="applicationpageFunction()">Application</h2>
                 <h2 onClick="shiftpageFunction()">Shift</h2>
                 <h2 onClick="requestpageFunction()">Request</h2>
-            </div>
-            
-            <div class="nav-right">
-                <h2 onClick="logoutpageFunction()">Logout</h2>
+                <h2 class="border" onClick="logoutpageFunction()">Logout</h2>
             </div>
         </div>
 
