@@ -30,6 +30,7 @@
 
         <div class="content">
             <form action="dashboard.php">
+                <h1>Login</h1>
                 <input type="text" name="" id="" placeholder="Username">
                 <br>
                 <input type="password" name="" id="" placeholder="Password">
