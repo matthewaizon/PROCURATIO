@@ -5,29 +5,37 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Procuratio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css\style.css">
+    <link rel="stylesheet" href="css\navbar.css">
+    <link rel="stylesheet" href="css\font.css">
 </head>
 
 <script>
     function dashboardpageFunction(){
             window.location.href="dashboard.php";
         }
+    function em_dashboardpageFunction(){
+            window.location.href="employee page/em_dashboard.php";
+        }
 </script>
 
 <body>
-    <div class="nav">
-            <img class="logo" src="img\logo.png" alt="">
-            <h2>Procuratio</h2>
-    </div>
     
     <div class="container">
-        <form action="dashboard.php">
-            <input type="text" name="" id="" placeholder="Username">
-            <br>
-            <input type="password" name="" id="" placeholder="Password">
-            <br>
-            <button>Login</button>
-        </form>
+        <div class="nav">
+                <img class="logo" src="img\logo.png" alt="">
+                <h2 onClick="em_dashboardpageFunction()">Procuratio</h2>
+        </div>
+
+        <div class="content">
+            <form action="dashboard.php">
+                <input type="text" name="" id="" placeholder="Username">
+                <br>
+                <input type="password" name="" id="" placeholder="Password">
+                <br>
+                <button>Login</button>
+            </form>
+        </div>
     </div>
 </body>
 

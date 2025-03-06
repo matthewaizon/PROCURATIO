@@ -1,0 +1,19 @@
+.post{
+    width: 10em;
+}
+
+.message{
+    height: 10em;
+    text-align: start;
+    vertical-align: top;
+    resize: none;
+    border: 0;
+    font-family: "Montserrat";
+    font-size: 25px;
+    width: 12.4em;
+    margin: 1em;
+}
+
+.content input{
+    margin: 0.5em;
+}
