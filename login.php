@@ -14,6 +14,9 @@
     function dashboardpageFunction(){
             window.location.href="dashboard.php";
         }
+    function em_dashboardpageFunction(){
+            window.location.href="employee page/em_dashboard.php";
+        }
 </script>
 
 <body>
@@ -21,7 +24,7 @@
     <div class="container">
         <div class="nav">
                 <img class="logo" src="img\logo.png" alt="">
-                <h2>Procuratio</h2>
+                <h2 onClick="em_dashboardpageFunction()">Procuratio</h2>
         </div>
 
         <div class="content">
