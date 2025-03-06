@@ -45,6 +45,7 @@
 
         <div class="content">
             <form action="">
+                <h1>Apply Now!</h1>
                 <input type="text" placeholder="First Name">
                 <input type="text" placeholder="Last Name">
                 <input type="email" placeholder="Email">
