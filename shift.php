@@ -20,8 +20,8 @@
         function homepageFunction(){
             window.location.href="dashboard.php";
         }  
-        function shiftpageFunction(){
-            window.location.href="shift.php";
+        function ListingFunction(){
+            window.location.href="joblistings.php";
         }  
         function requestpageFunction(){
             window.location.href="request.php";
@@ -39,7 +39,7 @@
             <div class="nav-right">
                 <h2 onClick="homepageFunction()">Home</h2>
                 <h2 onClick="applicationpageFunction()">Application</h2>
-                <h2 onClick="shiftpageFunction()">Shift</h2>
+                <h2 onClick="ListingFunction()">Job Listings</h2>
                 <h2 onClick="requestpageFunction()">Request</h2>
                 <h2 class="border" onClick="logoutpageFunction()">Logout</h2>
             </div>
