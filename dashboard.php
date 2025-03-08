@@ -14,6 +14,9 @@
         function logoutpageFunction(){
             window.location.href="login.php";
         }
+        function manageempFunction(){
+            window.location.href="manage_emp.php";
+        }
         function applicationpageFunction(){
             window.location.href="application.php";
         }
@@ -23,8 +26,8 @@
         function ListingFunction(){
             window.location.href="joblistings.php";
         }  
-        function requestpageFunction(){
-            window.location.href="request.php";
+        function attenrollFunction(){
+            window.location.href="attenroll.php";
         }  
     </script>
 </head>
@@ -38,9 +41,10 @@
             
             <div class="nav-right">
                 <h2 onClick="homepageFunction()">Home</h2>
+                <h2 onClick="manageempFunction()">Manage Employee</h2>
                 <h2 onClick="applicationpageFunction()">Application</h2>
                 <h2 onClick="ListingFunction()">Job Listings</h2>
-                <h2 onClick="requestpageFunction()">Request</h2>
+                <h2 onClick="attenrollFunction()">Attendance & Payroll</h2>
                 <h2 class="border" onClick="logoutpageFunction()">Logout</h2>
             </div>
         </div>

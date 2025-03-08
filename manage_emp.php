@@ -49,46 +49,42 @@
         </div>
 
         <div class="application-table">
-            <h2>Applications</h2>
-                <table>
-            <tr>
-                    <th>Name</th>
-                    <th>Resume</th>
-                    <th>Application Date</th>
-                    <th>STATUS</th>
-                </tr>
-                    <?php
-                    $conn = mysqli_connect("localhost", "root", "root", "softeng_db");
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
+            <h2>Employees</h2>
+            <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Date Hired</th>
+            <th>STATUS</th>
+        </tr>
+        <?php
+            $conn = mysqli_connect("localhost", "root", "root", "softeng_db");
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+        $sql = "SELECT
+                    U.name AS 'Name',
+                    U.email AS 'Email',
+                    E.date_hired AS 'Date Hired',
+                    E.status AS 'STATUS'
+                FROM employees AS E
+                INNER JOIN users AS U ON E.employee_id = U.user_id";
+        $result = $conn->query($sql);
 
-                    $sql = "SELECT
-                                U.NAME AS 'Name',
-                                A.resume_link AS 'Resume',
-                                A.applied_at AS 'Application date',
-                                A.STATUS AS 'STATUS'
-                            FROM
-                                applicants AS A
-                                INNER JOIN users AS U ON A.applicant_id = U.user_id";
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>
-                                    <td>" . $row["Name"] . "</td>
-                                    <td>" . $row["Resume"] . "</td>
-                                    <td>" . $row["Application date"] . "</td>
-                                    <td>" . $row["STATUS"] . "</td>
-                                </tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='5'>No results found</td></tr>";
-                    }
-                    $conn->close();
-                ?>
-
-            </table>
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>
+                        <td>" . htmlspecialchars($row["Name"]) . "</td>
+                        <td>" . htmlspecialchars($row["Email"]) . "</td>
+                        <td>" . htmlspecialchars($row["Date Hired"]) . "</td>
+                        <td>" . htmlspecialchars($row["STATUS"]) . "</td>
+                    </tr>";
+            }
+        } else {
+            echo "<tr><td colspan='4'>No employees found</td></tr>";
+        }$conn->close();
+        ?>
+    </table>
 
 
         </div>
