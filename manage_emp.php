@@ -55,34 +55,45 @@
             <th>Name</th>
             <th>Email</th>
             <th>Date Hired</th>
-            <th>STATUS</th>
+            <th>Status</th>
         </tr>
-        <?php
-            $conn = mysqli_connect("localhost", "root", "root", "softeng_db");
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-        $sql = "SELECT
-                    U.name AS 'Name',
-                    U.email AS 'Email',
-                    E.date_hired AS 'Date Hired',
-                    E.status AS 'STATUS'
-                FROM employees AS E
-                INNER JOIN users AS U ON E.employee_id = U.user_id";
-        $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>
-                        <td>" . htmlspecialchars($row["Name"]) . "</td>
-                        <td>" . htmlspecialchars($row["Email"]) . "</td>
-                        <td>" . htmlspecialchars($row["Date Hired"]) . "</td>
-                        <td>" . htmlspecialchars($row["STATUS"]) . "</td>
-                    </tr>";
+        <?php
+            $serverName="DESKTOP-FQOOPV8\SQLEXPRESS";
+            $connectionOptions=[
+                "Database"=>"procuratio",
+                "Uid"=>"",
+                "PWD"=>""
+            ];
+
+            $conn=sqlsrv_connect($serverName, $connectionOptions);
+
+            if ($conn == false) {
+                die("Connection failed: " . $conn->connect_error);
             }
-        } else {
-            echo "<tr><td colspan='4'>No employees found</td></tr>";
-        }$conn->close();
+
+            $sql = "SELECT
+                        U.name AS 'Name',
+                        U.email AS 'Email',
+                        E.date_hired AS 'Date Hired',
+                        E.status AS 'STATUS'
+                    FROM employees AS E
+                    INNER JOIN users AS U ON E.employee_id = U.user_id";
+
+            $result = sqlsrv_query($conn, $sql);
+            if ($result != false) {
+                while ($rows = sqlsrv_fetch_array($result)) {
+                    $dateHired = $rows["Date Hired"]->format('Y-m-d H:i:s');
+                    echo "<tr>
+                            <td>" . htmlspecialchars($rows["Name"]) . "</td>
+                            <td>" . htmlspecialchars($rows["Email"]) . "</td>
+                            <td>" . $dateHired . "</td>
+                            <td>" . htmlspecialchars($rows["STATUS"]) . "</td>
+                        </tr>";
+                } 
+            } else {
+                echo "<tr><td colspan='8'>No records found</td></tr>";
+            }
         ?>
     </table>
 

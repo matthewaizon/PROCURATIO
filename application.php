@@ -55,37 +55,45 @@
                     <th>Name</th>
                     <th>Resume</th>
                     <th>Application Date</th>
-                    <th>STATUS</th>
+                    <th>Status</th>
                 </tr>
                     <?php
-                    $conn = mysqli_connect("localhost", "root", "root", "softeng_db");
-                    if ($conn->connect_error) {
+                    $serverName="DESKTOP-FQOOPV8\SQLEXPRESS";
+                    $connectionOptions=[
+                        "Database"=>"procuratio",
+                        "Uid"=>"",
+                        "PWD"=>""
+                    ];
+
+                    $conn=sqlsrv_connect($serverName, $connectionOptions);
+
+                    if ($conn == false) {
                         die("Connection failed: " . $conn->connect_error);
                     }
 
-                    $sql = "SELECT
-                                U.NAME AS 'Name',
+                    $sql = "SELECT 
+                                U.name AS 'Name',
                                 A.resume_link AS 'Resume',
-                                A.applied_at AS 'Application date',
-                                A.STATUS AS 'STATUS'
-                            FROM
-                                applicants AS A
-                                INNER JOIN users AS U ON A.applicant_id = U.user_id";
-                    $result = $conn->query($sql);
+                                A.applied_at AS 'Application Date',
+                                A.status AS 'Status'
+                            FROM applicants AS A
+                            INNER JOIN users AS U ON A.applicant_id = U.user_id;";
 
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
+                    $result = sqlsrv_query($conn, $sql);
+
+                    if ($result != false) {
+                        while ($rows = sqlsrv_fetch_array($result)) {
+                            $applicationDate = $rows["Application Date"]->format('Y-m-d H:i:s');
                             echo "<tr>
-                                    <td>" . $row["Name"] . "</td>
-                                    <td>" . $row["Resume"] . "</td>
-                                    <td>" . $row["Application date"] . "</td>
-                                    <td>" . $row["STATUS"] . "</td>
+                                    <td>" . $rows["Name"] . "</td>
+                                    <td>" . $rows["Resume"] . "</td>
+                                    <td>" . $applicationDate . "</td>
+                                    <td>" . $rows["Status"] . "</td>
                                 </tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='5'>No results found</td></tr>";
+                        echo "<tr><td colspan='8'>No records found</td></tr>";
                     }
-                    $conn->close();
                 ?>
 
             </table>

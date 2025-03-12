@@ -49,8 +49,16 @@
         </div>
 
         <?php
-            $conn = mysqli_connect("localhost", "root", "root", "softeng_db");
-            if ($conn->connect_error) {
+            $serverName="DESKTOP-FQOOPV8\SQLEXPRESS";
+            $connectionOptions=[
+                "Database"=>"procuratio",
+                "Uid"=>"",
+                "PWD"=>""
+            ];
+
+            $conn=sqlsrv_connect($serverName, $connectionOptions);
+
+            if ($conn == false) {
                 die("Connection failed: " . $conn->connect_error);
             }
 
@@ -67,7 +75,7 @@
                     INNER JOIN payroll p ON a.employee_id = p.employee_id
                     INNER JOIN users u ON a.employee_id = u.user_id
                     WHERE u.user_type = 'Employee'";
-            $result = $conn->query($sql);
+            $result = sqlsrv_query($conn, $sql);
             ?>
 
             <div class="application-table">
@@ -84,23 +92,26 @@
                         <th>Pay Date</th>
                     </tr>
                     <?php
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
+                    if ($result != false) {
+                        while ($rows = sqlsrv_fetch_array($result)) {
+                            $date = $rows["date"]->format('Y-m-d');
+                            $pay_date = $rows["pay_date"]->format('Y-m-d');
+                            $time_in = $rows["time_in"]->format('H:i:s');
+                            $time_out = $rows["time_out"]->format('H:i:s');
                             echo "<tr>
-                                    <td>" . htmlspecialchars($row["Employee Name"]) . "</td>
-                                    <td>" . htmlspecialchars($row["date"]) . "</td>
-                                    <td>" . htmlspecialchars($row["time_in"]) . "</td>
-                                    <td>" . htmlspecialchars($row["time_out"]) . "</td>
-                                    <td>" . htmlspecialchars($row["basic_salary"]) . "</td>
-                                    <td>" . htmlspecialchars($row["deductions"]) . "</td>
-                                    <td>" . htmlspecialchars($row["net_salary"]) . "</td>
-                                    <td>" . htmlspecialchars($row["pay_date"]) . "</td>
+                                    <td>" . htmlspecialchars($rows["Employee Name"]) . "</td>
+                                    <td>" . $date . "</td>
+                                    <td>" . $time_in . "</td>
+                                    <td>" . $time_out . "</td>
+                                    <td>" . htmlspecialchars($rows["basic_salary"]) . "</td>
+                                    <td>" . htmlspecialchars($rows["deductions"]) . "</td>
+                                    <td>" . htmlspecialchars($rows["net_salary"]) . "</td>
+                                    <td>" . $pay_date . "</td>
                                 </tr>";
                         }
                     } else {
                         echo "<tr><td colspan='8'>No records found</td></tr>";
                     }
-                    $conn->close();
                     ?>
                 </table>
             </div>

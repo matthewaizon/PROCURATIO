@@ -61,35 +61,45 @@
                     <th>Time Created</th>
                 </tr>
                 <?php
-                $conn = mysqli_connect("localhost", "root", "root", "softeng_db");
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-                $sql = "SELECT
-                            job_title AS 'Job Title',
-                            job_description AS 'Description',
-                            department,
-                            salary_range AS 'Salary',
-                            status,
-                            created_at AS 'Time Created'
-                        FROM job_listings";
-                $result = $conn->query($sql);
+                    $serverName="DESKTOP-FQOOPV8\SQLEXPRESS";
+                    $connectionOptions=[
+                        "Database"=>"procuratio",
+                        "Uid"=>"",
+                        "PWD"=>""
+                    ];
 
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>
-                                <td>" . htmlspecialchars($row["Job Title"]) . "</td>
-                                <td>" . htmlspecialchars($row["Description"]) . "</td>
-                                <td>" . htmlspecialchars($row["department"]) . "</td>
-                                <td>" . htmlspecialchars($row["Salary"]) . "</td>
-                                <td>" . htmlspecialchars($row["status"]) . "</td>
-                                <td>" . htmlspecialchars($row["Time Created"]) . "</td>
-                            </tr>";
+                    $conn=sqlsrv_connect($serverName, $connectionOptions);
+
+                    if ($conn == false) {
+                        die("Connection failed: " . $conn->connect_error);
                     }
-                } else {
-                    echo "<tr><td colspan='6'>No job listings found</td></tr>";
-                }
-                $conn->close();
+
+                    $sql = "SELECT
+                                job_title AS 'Job Title',
+                                job_description AS 'Description',
+                                department,
+                                salary_range AS 'Salary',
+                                status,
+                                created_at AS 'Time Created'
+                            FROM job_listings";
+
+                    $result = sqlsrv_query($conn, $sql);
+                    
+                    if ($result != false) {
+                        while ($rows = sqlsrv_fetch_array($result)) {
+                            $timeCreated = $rows["Time Created"]->format('Y-m-d H:i:s');
+                            echo "<tr>
+                                    <td>" . htmlspecialchars($rows["Job Title"]) . "</td>
+                                    <td>" . htmlspecialchars($rows["Description"]) . "</td>
+                                    <td>" . htmlspecialchars($rows["department"]) . "</td>
+                                    <td>" . htmlspecialchars($rows["Salary"]) . "</td>
+                                    <td>" . htmlspecialchars($rows["status"]) . "</td>
+                                    <td>" . $timeCreated . "</td>
+                                </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='8'>No records found</td></tr>";
+                    }
                 ?>
             </table>
 
