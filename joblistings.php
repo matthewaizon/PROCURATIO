@@ -28,7 +28,10 @@
         }  
         function attenrollFunction(){
             window.location.href="attenroll.php";
-        }  
+        } 
+        function payrollFunction(){
+            window.location.href="payroll.php";
+        } 
     </script>
 </head>
 
@@ -44,7 +47,8 @@
                 <h2 onClick="manageempFunction()">Manage Employee</h2>
                 <h2 onClick="applicationpageFunction()">Application</h2>
                 <h2 onClick="ListingFunction()">Job Listings</h2>
-                <h2 onClick="attenrollFunction()">Attendance & Payroll</h2>
+                <h2 onClick="attenrollFunction()">Attendance</h2>
+                <h2 onClick="payrollFunction()">Pay Roll</h2>
                 <h2 class="border" onClick="logoutpageFunction()">Logout</h2>
             </div>
         </div>
