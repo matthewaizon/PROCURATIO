@@ -3,8 +3,6 @@ body{
     width: 100vw;
     height: 100vh;
     margin: 0;
-    background-color: #2c2c2c;
-
 }
 
 input{
@@ -16,7 +14,7 @@ input{
     border-color: #757575;
     padding: 10px;
 
-    color: white;
+    color: black;
     font-size: 15px;
 }
 
@@ -29,7 +27,7 @@ select {
     border-color: #757575;
     padding: 10px;
 
-    color: white;
+    color: black;
     font-size: 15px;
 }
 
@@ -42,12 +40,12 @@ button{
     height: auto;
     width: 100px;
     padding: 5px;
-    background-color: white;
+    background-color: #2c2c2c;
     border-radius: 5px;
     border: 0px;
 
     font-family: "Montserrat";
-    color: black;
+    color: white;
     font-size: 15px;
     cursor: pointer;
 }

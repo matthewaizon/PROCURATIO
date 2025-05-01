@@ -17,7 +17,7 @@
     border-style: solid;
     background-color: inherit;
 
-    color: white;
+    color: black;
     padding: 10px;
     font-family: "Montserrat";
     font-size: 15px;
@@ -40,16 +40,18 @@
     font-size: 2rem;
     margin: 0.2em;
     font-weight: 300;
-    color: white;
+    color: black;
 }
 
 .content form{
     height: auto;
     width: 15%;
-    padding: 5em;
+    padding: 2% 5%;
+    margin: 2%;
     justify-content: center;
-    background: #1e1e1e;
+    background: #ebebeb;
     border-radius: 15px;
+    color: black;
 }
 
 .content input{

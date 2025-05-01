@@ -14,7 +14,12 @@
 <body>
     <div class="container">
         <div class="nav">
-            <img class="logo" src="img/logo.png" alt="">
+            <div class="nav-left">
+                <img class="logo" src="img\logo.png" alt="">
+            </div>      
+            <div class="nav-right">
+                <h2 class="border">Register</h2>
+            </div>      
         </div>
 
         <div class="content">
@@ -36,14 +41,12 @@
             window.location.href="employee page/em_dashboard.php";
         }
 
-        // Simple front-end login validation (for demo purposes only)
         document.getElementById("loginForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent form from submitting normally
+            event.preventDefault(); 
 
             let usernameInput = document.getElementById("user").value;
             let passwordInput = document.getElementById("pass").value;
 
-            // Predefined login credentials
             const username = "David Miller";
             const password = "hashed_password6";
 

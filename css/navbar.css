@@ -2,7 +2,7 @@
     display: flex;
     width: 100vw;
 
-    background-color: #1e1e1e;
+    background-color: #ffffff;
     margin: 0px;
 }
 
@@ -25,11 +25,11 @@
     font-size: 0.8rem;
     font-weight: 300;
 
-    margin: 1em;
+    margin: 1.5%;
     
     width: fit-content;
 
-    color: white;
+    color: black;
     cursor: pointer;
 }
 
@@ -40,7 +40,6 @@
 .border{
     border-radius: 5px;
     border-width: 1px;
-    background: transparent;
     border-style: solid;
     border-color: #757575;
 
@@ -51,5 +50,5 @@
 }
 
 .logo{
-    height:35px;
+    height: 35px;
 }

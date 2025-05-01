@@ -14,25 +14,6 @@ if ($conn === false) {
     die("Connection failed: " . print_r(sqlsrv_errors(), true));
 }
 
-// ✅ Fix: Check if query executes properly
-$sql = "SELECT
-            u.name AS 'Employee Name',
-            a.date,
-            p.basic_salary,
-            p.deductions,
-            p.net_salary,
-            p.pay_date
-        FROM attendance a
-        INNER JOIN payroll p ON a.employee_id = p.employee_id
-        INNER JOIN users u ON a.employee_id = u.user_id
-        WHERE u.user_type = 'Employee'";
-
-$result = sqlsrv_query($conn, $sql);
-if ($result === false) {
-    die("Query failed: " . print_r(sqlsrv_errors(), true));
-}
-
-// Fetch transaction history
 $sqlTransactionHistory = "SELECT
                                 t.EM_NAME AS 'Employee Name',
                                 t.PAY_TYPE AS 'Payment Type',
@@ -49,23 +30,19 @@ if ($transactionHistoryResult === false) {
     die("Query failed: " . print_r(sqlsrv_errors(), true));
 }
 
-// ✅ Payment Processing
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $_POST["user"];
-    $salary = floatval($_POST["payment_amount"]);  // Convert salary to float
+    $salary = floatval($_POST["payment_amount"]);
     $paymentType = $_POST["payment_type"];
 
-    // Ensure salary is valid
     if ($salary <= 0) {
         echo "<script>alert('Invalid salary amount.');</script>";
     } else {
-        $deductions = $salary * 0.10; // 10% deduction
-        $netSalary = $salary - $deductions; // Compute net salary
+        $deductions = $salary * 0.10; 
+        $netSalary = $salary - $deductions; 
 
-        // Generate a 12-digit random number for receipt
         $receiptNumber = mt_rand(100000000000, 999999999999);
 
-        // Insert query with receipt number
         $sqlInsert = "INSERT INTO [transaction] (EM_NAME, PAY_TYPE, SALARY, DEDUCTIONS, NET_SAL, PAY_DATE, receipt)
                       VALUES (?, ?, ?, ?, ?, GETDATE(), ?)";
 
@@ -74,10 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = sqlsrv_query($conn, $sqlInsert, $params);
 
         if ($stmt) {
-            // Store the receipt number in the session
             $_SESSION['receipt_number'] = $receiptNumber;
 
-            // Redirect to avoid resubmitting the form on page refresh
             header("Location: " . $_SERVER['PHP_SELF']);
             exit;
         } else {
@@ -90,7 +65,6 @@ if (isset($_SESSION['receipt_number'])) {
     $receiptNumber = $_SESSION['receipt_number'];
     echo "<script>alert('Payment successfully recorded! Receipt Number: $receiptNumber');</script>";
 
-    // Clear the session variable after displaying the alert
     unset($_SESSION['receipt_number']);
 }
 ?>
@@ -151,39 +125,43 @@ if (isset($_SESSION['receipt_number'])) {
         </div>
 
         <div class="application-table">
-            <h2>Pay Employee</h2>
+            <h2>Transaction History</h2>
+
             <table>
                 <tr>
                     <th>Employee Name</th>
-                    <th>Date</th>
-                    <th>Basic Salary</th>
+                    <th>Payment Type</th>
+                    <th>Salary</th>
                     <th>Deductions</th>
                     <th>Net Salary</th>
                     <th>Pay Date</th>
+                    <th>Receipt Number</th>
                 </tr>
+
                 <?php
-                if ($result !== false) {
-                    while ($rows = sqlsrv_fetch_array($result)) {
-                        $date = $rows["date"] ? $rows["date"]->format('Y-m-d') : "N/A";
-                        $pay_date = $rows["pay_date"] ? $rows["pay_date"]->format('Y-m-d') : "N/A";
-                        echo "<tr>
-                                <td>" . htmlspecialchars($rows["Employee Name"]) . "</td>
-                                <td>" . $date . "</td>
-                                <td>" . htmlspecialchars($rows["basic_salary"]) . "</td>
-                                <td>" . htmlspecialchars($rows["deductions"]) . "</td>
-                                <td>" . htmlspecialchars($rows["net_salary"]) . "</td>
-                                <td>" . $pay_date . "</td>
-                            </tr>";
+                    if ($transactionHistoryResult !== false && sqlsrv_has_rows($transactionHistoryResult)) {  // Check if there are rows
+                        while ($transaction = sqlsrv_fetch_array($transactionHistoryResult)) {
+                            $payDate = $transaction["Pay Date"] ? $transaction["Pay Date"]->format('Y-m-d') : "N/A";
+                            echo "<tr>
+                                    <td>" . htmlspecialchars($transaction["Employee Name"]) . "</td>
+                                    <td>" . htmlspecialchars($transaction["Payment Type"]) . "</td>
+                                    <td>" . htmlspecialchars($transaction["Salary"]) . "</td>
+                                    <td>" . htmlspecialchars($transaction["Deductions"]) . "</td>
+                                    <td>" . htmlspecialchars($transaction["Net Salary"]) . "</td>
+                                    <td>" . $payDate . "</td>
+                                    <td>" . htmlspecialchars($transaction["Receipt Number"]) . "</td>
+                                </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='7'>No transaction history found</td></tr>";  // Display message if no records
                     }
-                } else {
-                    echo "<tr><td colspan='7'>No records found</td></tr>";
-                }
                 ?>
             </table>
         </div>
 
         <div class="content">
             <form action="" method="post">
+                <h2>Pay Employee</h2>
                 <input type="text" name="user" id="user" placeholder="Employee Name" required>
                 <br>
                 <input type="number" name="payment_amount" id="payment_amount" placeholder="Salary Amount" required>
@@ -196,39 +174,6 @@ if (isset($_SESSION['receipt_number'])) {
                 <br>
                 <button class="post" type="submit">Pay Employee</button>
             </form>
-        </div>
-
-        <div class="application-table">
-        <h2>Transaction History</h2>
-            <table>
-            <tr>
-                <th>Employee Name</th>
-                <th>Payment Type</th>
-                <th>Salary</th>
-                <th>Deductions</th>
-                <th>Net Salary</th>
-                <th>Pay Date</th>
-                <th>Receipt Number</th>
-            </tr>
-            <?php
-            if ($transactionHistoryResult !== false && sqlsrv_has_rows($transactionHistoryResult)) {  // Check if there are rows
-                while ($transaction = sqlsrv_fetch_array($transactionHistoryResult)) {
-                    $payDate = $transaction["Pay Date"] ? $transaction["Pay Date"]->format('Y-m-d') : "N/A";
-                    echo "<tr>
-                            <td>" . htmlspecialchars($transaction["Employee Name"]) . "</td>
-                            <td>" . htmlspecialchars($transaction["Payment Type"]) . "</td>
-                            <td>" . htmlspecialchars($transaction["Salary"]) . "</td>
-                            <td>" . htmlspecialchars($transaction["Deductions"]) . "</td>
-                            <td>" . htmlspecialchars($transaction["Net Salary"]) . "</td>
-                            <td>" . $payDate . "</td>
-                            <td>" . htmlspecialchars($transaction["Receipt Number"]) . "</td>
-                        </tr>";
-                }
-            } else {
-                echo "<tr><td colspan='7'>No transaction history found</td></tr>";  // Display message if no records
-            }
-            ?>
-        </table>
         </div>
     </div>
 </body>

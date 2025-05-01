@@ -33,8 +33,7 @@
     width: 90%;
     background-position: center;
     background-size: cover;
-    padding: 2.5rem;
+    padding: 0 2.5rem;
     align-content: center;
-    border-radius: 15px;
     margin: 1em;
 }
