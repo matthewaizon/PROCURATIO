@@ -83,7 +83,7 @@
             ?>
 
             <div class="application-table">
-                <h2>Employee Attendance & Payroll</h2>
+                <h2>Employee Attendance</h2>
                 <table>
                     <tr>
                         <th>Employee Name</th>
@@ -119,7 +119,7 @@
                     ?>
                 </table>
             </div>
-            <button class="post" onClick="payrollFunction()">Pay User</button>
+            <button class="post" onClick="payrollFunction()">Pay Employee</button>
     </div>
 </body>
 

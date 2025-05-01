@@ -151,7 +151,7 @@ if (isset($_SESSION['receipt_number'])) {
         </div>
 
         <div class="application-table">
-            <h2>Pay User</h2>
+            <h2>Pay Employee</h2>
             <table>
                 <tr>
                     <th>Employee Name</th>
@@ -194,7 +194,7 @@ if (isset($_SESSION['receipt_number'])) {
                     <option value="Online">Online Banking</option>
                 </select>
                 <br>
-                <button class="post" type="submit">Pay User</button>
+                <button class="post" type="submit">Pay Employee</button>
             </form>
         </div>
 
