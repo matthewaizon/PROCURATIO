@@ -1,3 +1,8 @@
+<?php
+require_once 'includes/auth.php';
+requireRole('Admin');
+?>
+
 <!DOCTYPE html>
 <html lang = "en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,7 +16,7 @@
 
     <script>
         function logoutpageFunction(){
-            window.location.href="login.php";
+            window.location.href = "logout.php";
         }
         function manageempFunction(){
             window.location.href="manage_emp.php";
@@ -63,11 +68,11 @@
         </tr>
 
         <?php
-            $serverName="DESKTOP-FQOOPV8\SQLEXPRESS";
-            $connectionOptions=[
-                "Database"=>"procuratio",
-                "Uid"=>"",
-                "PWD"=>""
+            $serverName = "BELEH\SQLEXPRESS"; 
+            $connectionOptions = [
+                "Database" => "procuratio",
+                "Uid" => "",
+                "PWD" => ""
             ];
 
             $conn=sqlsrv_connect($serverName, $connectionOptions);

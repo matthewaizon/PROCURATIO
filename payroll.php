@@ -1,7 +1,12 @@
 <?php
+require_once 'includes/auth.php';
+requireRole('Admin');
+?>
+
+<?php
 session_start(); // Start the session
 
-$serverName = "DESKTOP-FQOOPV8\SQLEXPRESS";
+$serverName = "BELEH\SQLEXPRESS"; 
 $connectionOptions = [
     "Database" => "procuratio",
     "Uid" => "",
@@ -109,7 +114,7 @@ if (isset($_SESSION['receipt_number'])) {
 
     <script>
         function logoutpageFunction(){
-            window.location.href="login.php";
+            wwindow.location.href = "logout.php";
         }
         function manageempFunction(){
             window.location.href="manage_emp.php";

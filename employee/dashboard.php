@@ -1,3 +1,8 @@
+<?php
+require_once '../includes/auth.php';
+requireRole('Employee');
+?>
+
 <!DOCTYPE html>
 <html lang = "en" xmlns="http://www.w3.org/1999/xhtml">
 
@@ -13,16 +18,16 @@
 
     <script>
         function loginpageFunction(){
-            window.location.href="../login.php";
+            window.location.href = "../logout.php";
         }
         function applicationpageFunction(){
-            window.location.href="em_application.php";
+            window.location.href="application.php";
         }
         function homepageFunction(){
-            window.location.href="em_dashboard.php";
+            window.location.href="dashboard.php";
         }  
         function contactpageFunction(){
-            window.location.href="em_contact.php";
+            window.location.href="contact.php";
         }
     </script>
 </head>
@@ -43,16 +48,9 @@
             </div>
         </div>
 
-        <div class="content">
-            <form action="">
-                <h1>Apply Now!</h1>
-                <input type="text" placeholder="First Name">
-                <input type="text" placeholder="Last Name">
-                <input type="email" placeholder="Email">
-                <input type="text" placeholder="Phone Number">
-                <button class="post">Upload Resume</button>
-                <button class="post">Submit</button>
-            </form>
+        <div class="hero">
+            <h3>EMPOWERING HR: Streamline Applications, Perfect Interviews. Accelerate Onboarding.</h3>
+            <button>Click Me</button>
         </div>
     </div>
 </body>

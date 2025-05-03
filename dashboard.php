@@ -1,3 +1,8 @@
+<?php
+require_once 'includes/auth.php';
+requireRole('Admin');
+?>
+
 <!DOCTYPE html>
 <html lang = "en" xmlns="http://www.w3.org/1999/xhtml">
 
@@ -12,7 +17,7 @@
 
     <script>
         function logoutpageFunction(){
-            window.location.href="login.php";
+            window.location.href = "logout.php";
         }
         function manageempFunction(){
             window.location.href="manage_emp.php";

@@ -1,3 +1,8 @@
+<?php
+require_once '../includes/auth.php';
+requireRole('Employee');
+?>
+
 <!DOCTYPE html>
 <html lang = "en" xmlns="http://www.w3.org/1999/xhtml">
 
@@ -13,7 +18,7 @@
 
     <script>
         function loginpageFunction(){
-            window.location.href="../login.php";
+            window.location.href = "../logout.php";
         }
         function applicationpageFunction(){
             window.location.href="em_application.php";
@@ -29,7 +34,7 @@
 
 <body>
     <div class="container">
-        <div class="nav">
+    <div class="nav">
             <div class="nav-left">
                 <img class="logo" src="..\img\logo.png" alt="">
 
@@ -43,9 +48,15 @@
             </div>
         </div>
 
-        <div class="hero">
-            <h3>EMPOWERING HR: Streamline Applications, Perfect Interviews. Accelerate Onboarding.</h3>
-            <button>Click Me</button>
+        <div class="content">
+            <form action="">
+                <h1>Contact Us</h1>
+                <input type="text" placeholder="First Name">
+                <input type="text" placeholder="Last Name">
+                <input type="email" placeholder="Email">
+                <textarea class="message" type="text" placeholder="Message"></textarea>
+                <button class="post">Submit</button>
+            </form>
         </div>
     </div>
 </body>

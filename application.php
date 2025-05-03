@@ -11,7 +11,7 @@
 
     <script>
         function logoutpageFunction(){
-            window.location.href="login.php";
+            window.location.href = "logout.php";
         }
         function manageempFunction(){
             window.location.href="manage_emp.php";
@@ -62,11 +62,11 @@
                     <th>Status</th>
                 </tr>
                     <?php
-                    $serverName="DESKTOP-FQOOPV8\SQLEXPRESS";
-                    $connectionOptions=[
-                        "Database"=>"procuratio",
-                        "Uid"=>"",
-                        "PWD"=>""
+                    $serverName = "BELEH\SQLEXPRESS"; 
+                    $connectionOptions = [
+                        "Database" => "procuratio",
+                        "Uid" => "",
+                        "PWD" => ""
                     ];
 
                     $conn=sqlsrv_connect($serverName, $connectionOptions);
