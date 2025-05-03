@@ -1,7 +1,17 @@
 <?php
+require_once 'includes/db.php';
 require_once 'includes/auth.php';
 requireRole('Admin');
+
+session_start();
+
+$sql = "SELECT * FROM employees";
+$result = sqlsrv_query($conn, $sql);
+if (!$result) {
+    die(print_r(sqlsrv_errors(), true));
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang = "en" xmlns="http://www.w3.org/1999/xhtml">
@@ -59,52 +69,26 @@ requireRole('Admin');
 
         <div class="application-table">
             <h2>Employees</h2>
-            <table>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Date Hired</th>
-            <th>Status</th>
-        </tr>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Full Name</th>
+                        <th>Position</th>
+                        <!-- Add more columns as needed -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) : ?>
+                        <tr>
+                            <td><?php echo $row['employee_id']; ?></td>
+                            <td><?php echo $row['full_name']; ?></td>
+                            <td><?php echo $row['position']; ?></td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
 
-        <?php
-            $serverName = "BELEH\SQLEXPRESS"; 
-            $connectionOptions = [
-                "Database" => "procuratio",
-                "Uid" => "",
-                "PWD" => ""
-            ];
-
-            $conn=sqlsrv_connect($serverName, $connectionOptions);
-
-            if ($conn == false) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            $sql = "SELECT
-                        U.name AS 'Name',
-                        U.email AS 'Email',
-                        E.date_hired AS 'Date Hired',
-                        E.status AS 'STATUS'
-                    FROM employees AS E
-                    INNER JOIN users AS U ON E.employee_id = U.user_id";
-
-            $result = sqlsrv_query($conn, $sql);
-            if ($result != false) {
-                while ($rows = sqlsrv_fetch_array($result)) {
-                    $dateHired = $rows["Date Hired"]->format('Y-m-d H:i:s');
-                    echo "<tr>
-                            <td>" . htmlspecialchars($rows["Name"]) . "</td>
-                            <td>" . htmlspecialchars($rows["Email"]) . "</td>
-                            <td>" . $dateHired . "</td>
-                            <td>" . htmlspecialchars($rows["STATUS"]) . "</td>
-                        </tr>";
-                } 
-            } else {
-                echo "<tr><td colspan='8'>No records found</td></tr>";
-            }
-        ?>
-    </table>
 
 
         </div>

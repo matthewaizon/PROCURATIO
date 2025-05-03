@@ -9,23 +9,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
     if (!empty($name) && !empty($password)) {
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE name = ?");
-        $stmt->execute([$name]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $sql = "SELECT * FROM users WHERE name = ?";
+        $params = array($name);
+        $stmt = sqlsrv_query($conn, $sql, $params);
 
-        if ($user && password_verify($password, $user['password_hash'])) {
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['user_type'] = $user['user_type'];
-            $_SESSION['user_name'] = $user['name'];
+        if ($stmt && ($user = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC))) {
+            if (password_verify($password, $user['password_hash'])) {
+                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['user_type'] = $user['user_type'];
+                $_SESSION['user_name'] = $user['name'];
 
-            if ($user['user_type'] === 'Admin') {
-                header('Location: dashboard.php');
-            } elseif ($user['user_type'] === 'Employee') {
-                header('Location: employee/dashboard.php');
+                if ($user['user_type'] === 'Admin') {
+                    header('Location: dashboard.php');
+                } elseif ($user['user_type'] === 'Employee') {
+                    header('Location: employee/dashboard.php');
+                } else {
+                    $error = 'Unsupported role type.';
+                }
+                exit();
             } else {
-                $error = 'Unsupported role type.';
+                $error = 'Invalid name or password!';
             }
-            exit();
         } else {
             $error = 'Invalid name or password!';
         }
@@ -34,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

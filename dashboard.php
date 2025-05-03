@@ -1,7 +1,16 @@
 <?php
+require_once 'includes/db.php';
 require_once 'includes/auth.php';
 requireRole('Admin');
+
+session_start();
+
+// Sample query if this dashboard is showing user count
+$sql = "SELECT COUNT(*) AS total_users FROM users";
+$result = sqlsrv_query($conn, $sql);
+$total = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
 ?>
+
 
 <!DOCTYPE html>
 <html lang = "en" xmlns="http://www.w3.org/1999/xhtml">
