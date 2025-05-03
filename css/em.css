@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
 .post{
     margin-top: 0.5em;
     margin-bottom: 0.5em;
@@ -19,7 +21,7 @@
 
     color: black;
     padding: 10px;
-    font-family: "Montserrat";
+    font-family: 'Montserrat', sans-serif;
     font-size: 15px;
     width: 90%;
     margin: 1em;
@@ -36,9 +38,9 @@
 }
 
 .content h1{
-    font-family: "Montserrat";
+    font-family: 'Montserrat', sans-serif;
     font-size: 2rem;
-    margin: 0.2em;
+    margin: 0.2em 0;
     font-weight: 300;
     color: black;
 }
@@ -57,4 +59,34 @@
 .content input{
     width: 90%;
     margin: 0.5em;
+}
+
+.success-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+    text-align: center;
+}
+.success-message h1 {
+    color: #2ecc71;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+.success-message p {
+    font-size: 18px;
+    color: #333;
+}
+.success-message a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2ecc71;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.success-message a:hover {
+    background-color: #27ae60;
 }

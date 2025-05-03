@@ -18,7 +18,7 @@
                 <img class="logo" src="img\logo.png" alt="">
             </div>      
             <div class="nav-right">
-                <h2 class="border">Register</h2>
+                <h2 class="border">Procuratio</h2>
             </div>      
         </div>
 
