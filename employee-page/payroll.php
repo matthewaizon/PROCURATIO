@@ -2,7 +2,7 @@
 session_start(); // Start the session
 
 $name = $_SESSION['name'];
-$serverName = "DESKTOP-FQOOPV8\SQLEXPRESS";
+$serverName = "BELEH\SQLEXPRESS";
 $connectionOptions = [
     "Database" => "procuratio",
     "Uid" => "",
@@ -70,6 +70,8 @@ if ($transactionHistoryResult === false) {
             </div>
             
             <div class="nav-right">
+                <h2 class="border" onClick="attendanceFunction()">Attendance</h2>
+                <h2 class="border" onClick="payrollFunction()">Payroll</h2>
                 <h2 class="border" onClick="logoutpageFunction()">Logout</h2>
             </div>
         </div>
