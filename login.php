@@ -31,27 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
         if ($user) {
-            echo "<h3>User Record:</h3>";
-            echo "<table border='1' cellpadding='5'>";
-            echo "<tr>";
-            foreach ($user as $key => $value) {
-                echo "<th>" . htmlspecialchars($key) . "</th>";
-            }
-            echo "</tr><tr>";
-            foreach ($user as $value) {
-                echo "<td>" . htmlspecialchars((string)$value) . "</td>";
-            }
-            echo "</tr></table><br>";
-
-            // ✅ Check password
             if ($name == $user['name'] && $password == $user['password_hash']){
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['user_type'] = $user['user_type'];
-                $_SESSION['user_name'] = $user['name'];
+                $_SESSION['name'] = $user['name'];
 
-                if ($user['user_type'] === 'Applicant') {
-                    header('Location: applicant-page/em_dashboard.php');
-                } elseif ($user['user_type'] === 'Employee') {
+                if ($user['user_type'] === 'Employee') {
+                    header('Location: employee-page/payroll.php');
+                } elseif ($user['user_type'] === 'Admin') {
                     header('Location: dashboard.php');
                 } else {
                     $error = 'Unsupported role type.';
@@ -85,7 +72,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="nav-left">
                 <img class="logo" src="assets/img/logo.png" alt="Procuratio Logo">
             </div>
-            <div class="nav-right"></div>
+            <div class="nav-right">
+                <h2 class="border">Procuratio</h2>
+            </div>
         </div>
 
         <div class="content">
