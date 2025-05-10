@@ -1,59 +1,50 @@
 <?php
-session_start(); // Start the session
-
-
+session_start();
+require_once __DIR__ . '/../includes/auth.php';  // redirects if not logged in
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Procuratio</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/navbar.css">
-    <link rel="stylesheet" href="../assets/css/font.css">
-    <link rel="stylesheet" href="../assets/css/em.css">
-    <link rel="stylesheet" href="../assets/css/hero.css">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Procuratio – Employee Dashboard</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/navbar.css">
+  <link rel="stylesheet" href="../assets/css/font.css">
+  <link rel="stylesheet" href="../assets/css/em.css">
+  <link rel="stylesheet" href="../assets/css/hero.css">
 
-
-    <script>
-        function logoutpageFunction(){
-            window.location.href="../login.php";
-        }
-        function attendanceFunction(){
-            window.location.href="attendance.php";
-        }  
-        function payrollFunction(){
-            window.location.href="payroll.php";
-        }  
-    </script>
+  <script>
+    function attendanceFunction(){
+      window.location.href = "attendance.php";
+    }
+    function payrollFunction(){
+      window.location.href = "payroll.php";
+    }
+    function logoutpageFunction(){
+      window.location.href = "../login.php";
+    }
+  </script>
 </head>
 
 <body>
-<div class="container">
+  <div class="container">
     <div class="nav">
-            <div class="nav-left">
-                <img class="logo" src="assets/img/logo.png" alt="">
-            </div>
-            
-            <div class="nav-right">
-                <h2 onClick="homepageFunction()">Home</h2>
-                <h2 onClick="manageempFunction()">Manage Employee</h2>
-                <h2 onClick="applicationpageFunction()">Application</h2>
-                <h2 onClick="ListingFunction()">Job Listings</h2>
-                <h2 onClick="attenrollFunction()">Attendance</h2>
-                <h2 onClick="payrollFunction()">Pay Roll</h2>
-                <h2 class="border" onClick="logoutpageFunction()">Logout</h2>
-            </div>
-        </div>
-
-
-        <div class="hero">
-            <h3>EMPOWERING HR: Streamline Applications, Perfect Interviews. Accelerate Onboarding.</h3>
-            <button>Click Me</button>
-        </div>
+      <div class="nav-left">
+        <img class="logo" src="../assets/img/logo.png" alt="">
+      </div>
+      <div class="nav-right">
+        <h2 onClick="attendanceFunction()">Attendance</h2>
+        <h2 onClick="payrollFunction()">Pay Roll</h2>
+        <h2 class="border" onClick="logoutpageFunction()">Logout</h2>
+      </div>
     </div>
-</body>
 
+    <div class="hero">
+      <h3>Welcome, <?= htmlspecialchars($_SESSION['name'] ?? 'Employee') ?>!</h3>
+      <p>Use the tabs above to record your attendance or view your payroll.</p>
+    </div>
+    <!-- You can drop in dashboard widgets here -->
+  </div>
+</body>
 </html>
