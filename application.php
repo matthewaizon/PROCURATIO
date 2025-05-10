@@ -51,13 +51,27 @@ $result = sqlsrv_query($conn, $sql);
     <link rel="stylesheet" href="assets/css/em.css">
     <link rel="stylesheet" href="assets/css/hero.css">
     <script>
-        function logoutpageFunction() { window.location.href="login.php"; }
-        function manageempFunction() { window.location.href="manage_emp.php"; }
-        function applicationpageFunction() { window.location.href="application.php"; }
-        function homepageFunction() { window.location.href="dashboard.php"; }
-        function ListingFunction() { window.location.href="joblistings.php"; }
-        function attenrollFunction() { window.location.href="attenroll.php"; }
-        function payrollFunction() { window.location.href="payroll.php"; }
+        function logoutpageFunction(){
+            window.location.href="applicant-page/em_dashboard.php";
+        }
+        function manageempFunction(){
+            window.location.href="manage_emp.php";
+        }
+        function applicationpageFunction(){
+            window.location.href="application.php";
+        }
+        function homepageFunction(){
+            window.location.href="dashboard.php";
+        }  
+        function ListingFunction(){
+            window.location.href="joblistings.php";
+        }  
+        function attenrollFunction(){
+            window.location.href="attenroll.php";
+        }
+        function payrollFunction(){
+            window.location.href="payroll.php";
+        } 
     </script>
 </head>
 <body>

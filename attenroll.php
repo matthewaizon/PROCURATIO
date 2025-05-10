@@ -12,7 +12,7 @@
 
     <script>
         function logoutpageFunction(){
-            window.location.href="login.php";
+            window.location.href="applicant-page/em_dashboard.php";
         }
         function manageempFunction(){
             window.location.href="manage_emp.php";

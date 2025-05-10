@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h2 onClick="homepageFunction()">Home</h2>
                 <h2 onClick="applicationpageFunction()">Application</h2>
                 <h2 onClick="contactpageFunction()">Contact Us</h2>
-                <h2 class="border" onClick="loginpageFunction()">Logout</h2>
+                <h2 class="border" onClick="loginpageFunction()">Login</h2>
             </div>
         </div>
 
