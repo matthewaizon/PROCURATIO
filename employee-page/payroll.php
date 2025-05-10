@@ -47,21 +47,12 @@ if ($transactionHistoryResult === false) {
         function logoutpageFunction(){
             window.location.href="../applicant-page/em_dashboard.php";
         }
-        function manageempFunction(){
-            window.location.href="manage_emp.php";
-        }
-        function applicationpageFunction(){
-            window.location.href="application.php";
+        function attendanceFunction(){
+            window.location.href = "attendance.php";
         }
         function homepageFunction(){
-            window.location.href="dashboard.php";
-        }  
-        function ListingFunction(){
-            window.location.href="joblistings.php";
-        }  
-        function attenrollFunction(){
-            window.location.href="attenroll.php";
-        }  
+        window.location.href="dashboard.php";
+    }  
         function payrollFunction(){
             window.location.href="payroll.php";
         }  
@@ -75,6 +66,9 @@ if ($transactionHistoryResult === false) {
                 <img class="logo" src="assets/img/logo.png" alt="Logo">
             </div>
             <div class="nav-right">
+                <h2 onClick="homepageFunction()">Dashboard</h2>
+                <h2 onClick="attendanceFunction()">Attendance</h2>
+                <h2 onClick="payrollFunction()">Pay Roll</h2>
                 <h2 class="border" onClick="logoutpageFunction()">Logout</h2>
             </div>
         </div>
