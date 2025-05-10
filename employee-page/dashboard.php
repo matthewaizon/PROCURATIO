@@ -1,13 +1,6 @@
 <?php
 session_start(); // Start the session
 
-$name = $_SESSION['name'];
-$serverName = "BELEH\SQLEXPRESS";
-$connectionOptions = [
-    "Database" => "procuratio",
-    "Uid" => "",
-    "PWD" => ""
-];
 
 ?>
 
@@ -38,19 +31,28 @@ $connectionOptions = [
 </head>
 
 <body>
-    <div class="container">
-        <div class="nav">
+<div class="container">
+    <div class="nav">
             <div class="nav-left">
                 <img class="logo" src="assets/img/logo.png" alt="">
             </div>
             
             <div class="nav-right">
-                <h2 class="border" onClick="attendanceFunction()">Attendance</h2>
-                <h2 class="border" onClick="payrollFunction()">Payroll</h2>
+                <h2 onClick="homepageFunction()">Home</h2>
+                <h2 onClick="manageempFunction()">Manage Employee</h2>
+                <h2 onClick="applicationpageFunction()">Application</h2>
+                <h2 onClick="ListingFunction()">Job Listings</h2>
+                <h2 onClick="attenrollFunction()">Attendance</h2>
+                <h2 onClick="payrollFunction()">Pay Roll</h2>
                 <h2 class="border" onClick="logoutpageFunction()">Logout</h2>
             </div>
         </div>
-        <h1>Hello World</h1>
+
+
+        <div class="hero">
+            <h3>EMPOWERING HR: Streamline Applications, Perfect Interviews. Accelerate Onboarding.</h3>
+            <button>Click Me</button>
+        </div>
     </div>
 </body>
 
