@@ -9,7 +9,7 @@
 <div>
   <h3>How to download XAMPP</h3>
   <p>
-    To download XAMPP click the download button below.
+    To download XAMPP click the download button below. Note that XAMPP is used to locally deploy and test a website before deploying them in live servers.
   </p>
   <a href="https://www.apachefriends.org" target="_blank" rel="noopener noreferrer">
     Click here to download
@@ -21,9 +21,7 @@
   </p>
   
   <a href="https://www.youtube.com/watch?v=r0lDDeVkaks" target="_blank" rel="noopener noreferrer">
-    <img src="https://i.ytimg.com/an_webp/r0lDDeVkaks/mqdefault_6s.webp?du=3000&sqp=CKve_ccG&rs=AOn4CLBcMiAnMnVoogzcetRiU22zeXZxNg" >
-    <br>
-    You can click the graphics to be redirected or this button.
+    Click here to watch.
   </a>
 </div>
 
